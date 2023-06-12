@@ -1,0 +1,137 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true, IntroEnabled = false})
+
+OrionLib:MakeNotification({
+	Name = "Logged In!",
+	Content = "You're Logged in as "..Player.Name.." ",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+_G.Key = "wsg"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    local Window = OrionLib:MakeWindow({Name = "Club Cheat", HidePremium = false, SaveConfig = true, IntroText = "ScriptHub"})
+    local Tab = Window:MakeTab({
+        Name = "Main",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    Tab:AddButton({
+        Name = "Green Case Scan!",
+        Callback = function()
+            print("Searching..")
+            wait(1)
+            print("results found")
+            wait(1)
+            local handlesPart = game.Workspace:FindFirstChild("Handles", true)
+            
+            if handlesPart then
+                print("There is a Green Crate!")
+                -- Create a ScreenGui
+            local screenGui = Instance.new("ScreenGui")
+            screenGui.Name = "MyScreenGui"
+            screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+            
+            -- Create a Frame
+            local frame = Instance.new("Frame")
+            frame.Size = UDim2.new(0.5, 0, 0.5, 0)
+            frame.Position = UDim2.new(0.25, 0, 0.25, 0)
+            frame.BackgroundColor3 = Color3.new(0, 170, 0)
+            frame.Parent = screenGui
+            
+            -- Create a TextLabel inside the Frame
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.BackgroundColor3 = Color3.new(0, 170, 0)
+            textLabel.TextColor3 = Color3.new(255, 255, 255)
+            textLabel.Text = "There is a Green Crate"
+            textLabel.Parent = frame
+            textLabel.TextScaled = true
+            wait(3)
+            screenGui:Destroy()
+            frame:Destroy()
+            textLabel:Destroy()
+            else
+                print("No Green Crate.")
+                local screenGui1 = Instance.new("ScreenGui")
+            screenGui1.Name = "MyScreenGui1"
+            screenGui1.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+            
+            -- Create a Frame
+            local frame1 = Instance.new("Frame")
+            frame1.Size = UDim2.new(0.5, 0, 0.5, 0)
+            frame1.Position = UDim2.new(0.25, 0, 0.25, 0)
+            frame1.BackgroundColor3 = Color3.new(0, 0, 0)
+            frame1.Parent = screenGui1
+            
+            -- Create a TextLabel inside the Frame
+            local textLabel1 = Instance.new("TextLabel")
+            textLabel1.Size = UDim2.new(1, 0, 1, 0)
+            textLabel1.BackgroundColor3 = Color3.new(255, 0, 0)
+            textLabel1.TextColor3 = Color3.new(255, 255, 255)
+            textLabel1.Text = "There is no Green Crate"
+            textLabel1.Parent = frame1
+            textLabel1.TextScaled = true
+            wait(3)
+            screenGui1:Destroy()
+            frame1:Destroy()
+            textLabel1:Destroy()
+            end
+          end    
+    })
+    
+    end
+
+    function CorrectKeyNotification()
+        OrionLib:MakeNotification({
+            Name = "Correct Key!",
+            Content = "You have entered the correct key!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+
+    function InCorrectKeyNotification()
+        OrionLib:MakeNotification({
+            Name = "Incorrect Key!",
+            Content = "You have entered the incorrect key!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+
+Tab:AddTextbox({
+	Name = "Enter Key",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Check Key!",
+	Callback = function()
+      		if _G.KeyInput == _G.Key then
+                MakeScriptHub()
+                CorrectKeyNotification()
+            else
+                InCorrectKeyNotification()
+            end
+  	end    
+})
+
+
+
+
+
